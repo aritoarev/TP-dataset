@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa de leyendas paranormales</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <style>
+        #map {
+            height: 100vh;
+        }
+
+        .leaflet-popup-content {
+            max-width: 350px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .marcador {
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+
+        // MAPA
+        const map = L.map('map').setView([-34.65, -58.65], 10);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+     }).addTo(map);
+
+
+        // ÍCONO PARA FANTASMAS
+        const iconoFantasma = L.divIcon({
+            html: '👻',
+            className: 'marcador',
+            iconSize: [40, 40],
+            iconAnchor: [20, 20]
+        });
+
+
+        // ÍCONO PARA LUGARES EMBRUJADOS
+        const iconoCasa = L.divIcon({
+            html: '🏚️',
+            className: 'marcador',
+            iconSize: [40, 40],
+            iconAnchor: [20, 20]
+        });
+
+
+        // ÍCONO PARA MITOS
+        const iconoCalabaza = L.divIcon({
+            html: '🎃',
+            className: 'marcador',
+            iconSize: [40, 40],
+            iconAnchor: [20, 20]
+        });
+
+
+        // DATOS DE LAS LEYENDAS
+        const leyendas = [
+
+            {
+                nombre: "El falso medico",
+                categoria: "Mito",
+                lugar: "Hospital de Clinicas",
+                descripcion: "Son muchas horas y el cansancio se acumula. Se siente sobre los hombros. Varios cafés engañan al sueño y lo retrasan un poco pero esto solo no alcanza. Las guardias son inevitables, pero él sabe que con eso también suma experiencia. Le pide a una enfermera que le alcance las historias clínicas de los pacientes de la habitación 224. Es el último esfuerzo. Ya se va. Una cama mullida y no una camilla durísima y fría. Eso es lo que necesita. Repasa las historias clínicas: no son casos graves. No tiene que tomar más decisiones por el día de hoy. —Buenos días —dice en voz alta y firme—, cómo están hoy. Braulio, un señor de unos 70 años, lo saluda apenas con la mano, pero le hace el gesto de que está todo bien. Cálculos. Cálculos renales como para llenar una estantería completa. Un poco dopado pero evolucionando bien. Lo revisa. Todo en orden. En la cama de al lado, la otra paciente, Rosa. Entró con un cuadro de vesícula inflamada, para intervención. Tiene para unos días antes de ser operada. Con la vesícula inflamada hay más riesgos. ¿Es él que la ve muy pálida o realmente lo está? Le hace la pregunta de rigor: —Y, doña Rosa, ¿cómo se siente? —Con dolor m’hijo, duele la herida.El doctor trata de procesar rápidamente la información, vuelve a consultar la historia clínica. —¿Qué herida, doña Rosa?—La de la operación, cuál va a ser si no —le contesta la señora al mismo tiempo que se levanta la sábana y parte del camisón. La marca de la herida no le deja lugar a duda. La incisión se ve desprolija y la sutura no mucho mejor. El doctor no sabe por dónde empezar, pero hace la pregunta obvia: —¿Pero quién… cuándo la operaron, doña Rosa? Doña Rosa le pide que le sirva un vaso de agua, pero el doctor está tan nervioso que casi se la toma él. —Vino un muchacho joven, como usted, y se presentó como el doctor… no me acuerdo el apellido. Ya estaba con los guantes y con lo que va en la boca, eso, el barbijo y me contó, hablando muy suavecito, que me iba a operar. Le pregunté si tenía que ser ahora. Me dijo que era el único momento en que el… ¿cómo se llama?, eso, quirófano, estaba libre. Bueno, me dijo, ahora cierre los ojitos y relájese. Después, me puso un pañuelo en la boca y me quedé dormida. ¿Pasa algo malo, doctor?El doctor repasa por décima vez la historia clínica. Sólo figura la rutina diaria, nada más. —Doctor, ¿pasa algo?Al médico le tiemblan las piernas y no puede decidir si dejar a Rosa sola o llamar a la enfermera, aunque no es la misma de la noche. Se pregunta cómo puede ser posible, cómo.",
+                latitud: -34.59910108583254,
+                longitud: -58.40010230429577
+            },
+
+            {
+                nombre: "Banquete oriental",
+                categoria: "Mito",
+                lugar: "Barrio chino",
+                descripcion: "Fue en uno de esos restaurantes chinos, un tenedor libre. Hace unos diez años, más o menos. Gracias a Dios y a la Virgen olvidé su dirección exacta, pero puedo decirles que quedaba en Belgrano. Aquel sábado a la noche estaba lleno de gente.En un momento me levanté para ir al baño. Me sentía mal. Estaba segura de que algo de lo que había comido me había dado una patada al hígado.Lo primero que hice fue mirarme al espejo. Estaba pálida. «Seguro que Walter se dio cuenta de que estaba descompuesta», pensé. Quise lavarme la cara con agua fresca, pero la canilla estaba rota, giraba en falso. Hice otro intento, esta vez presionando con fuerza hacia abajo. Y entonces llegaron los gritos.La primera sensación que tuve fue que había conseguido abrir la canilla, y que en vez de agua brotaban aquellos alaridos. «¡La puta!», dije; pero no era eso. Me di cuenta de que los gritos venían de afuera. Sabía que algo estaba pasando en el salón del restaurante, algo que provocaba aquel alboroto. Y había órdenes mezcladas con los alaridos de pánico, órdenes gritadas con furia. Una de ellas pude escucharla con claridad: «Vamos, todos afuera, vamos». Era repetida una y otra vez. Había otras voces fuertes, pero no podía comprenderlas. Con las piernas temblando decidí echar un vistazo. El ojo de la cerradura daba sólo a un pequeño sector del salón principal. Sin embargo, me alcanzó para ver cómo la gente corría. Y por la dirección que seguían, supuse que todos estaban queriendo escapar del lugar.Estuve a punto de salir al salón y unirme a la huida. Pero justo antes de hacerlo, los vi: chinos de traje.Afuera se volvieron a escuchar gritos, pero ahora sólo en chino, y el ruido que hacían mesas y sillas al ser arrastradas. Quise ver qué pasaba. Miré de nuevo por la cerradura, pero ahora el respaldo de una silla me tapaba la visión.Estaba segura de que los gritos que escuchaba eran de alguien desesperado, de un chino suplicando por algo.Me animé y abrí la puerta del baño un centímetro.No me había equivocado. Había un chino muy gordo arrodillado en el piso, y lloraba y gritaba, con el rostro entre las manos. Pude ver que llevaba un delantal de cocina atado a la cintura. Frente al gordo había otro chino, de pie, con una cadena en la mano. Alrededor de ellos estaban cuatro o cinco más, observando la escena mientras jugueteaban con sus armas. No había dudas: aquel gordo, a pesar de ser tres veces más grande que cualquiera de los que lo rodeaban, estaba llorando, estaba pidiendo piedad, misericordia al chino con la cadena. Parecía rezar por su vida. Pero el de la cadena no lo escuchó. El animal, de repente, le pegó un cadenazo en la cara. Y luego otro. Y otro.Estaba tirado en el piso, y los chinos de traje discutían a su alrededor. Todos parecían acusar al de la cadena.Finalmente, después de casi agarrarse a las trompadas, los chinos decidieron algo. Tres de ellos trajeron grandes bolsas de residuos y cuchillos de todo tipo y tamaño. Y sin más ceremonias, se lanzaron contra el enorme cadáver.En el sector frente al baño, donde habían llevado a cabo la carnicería, no había nadie. Me asomé al salón principal: vacío. Los ruidos y las voces venían desde la derecha, pero aún se escuchaban lejos, lo suficiente como para animarme a atravesar el salón sin ser descubierta. Me saqué los zapatos y caminé por el costado, bien pegada a la pared, atenta a no llevarme ninguna silla o mesa por delante. Llegué a la puerta principal y, antes irme del restaurante, miré hacia adentro. Después salí a la calle y, a pesar de mi edad, corrí. Todo lo que pude. Corrí.De la puerta de entrada del restaurante, uno podía ver el salón principal y, detrás de este, la cocina, en el fondo. La puerta de la cocina estuvo siempre cerrada mientras comía con Walter, uno nunca podía ver qué clase de porquerías preparaban en esa pocilga. Pero en aquel momento no se habían molestado en cerrarla. Y entonces supe por qué los chinos se habían quedado en el tenedor libre: entre tres de los orientales, vaciaban una de las bolsas de residuos dentro de una gran olla humeante. Sí, los chinos hijos de puta cocinaron los pedazos del gordo. Hicieron un guiso con el muerto",
+                latitud: -34.55663865830569,
+                longitud: -58.45105323275385
+            },
+
+            {
+                nombre: "Orbes de la noche",
+                categoria: "Fantasmas",
+                lugar: "Ranelagh",
+                descripcion: "Ranelagh, una de las localidades más pintorescas del partido de Berazategui.Sus calles arboladas, sus antiguas construcciones de estilo inglés y sus amplios espacios verdes le otorgan una personalidad distinta al resto del conurbano bonaerense. Durante los fines de semana, cientos de personas se reúnen en las plazas cercanas a la estación ferroviaria para compartir mates, practicar deportes o simplemente disfrutar de la tranquilidad del lugar.Sin embargo, cuando cae la noche, algunas historias comienzan a circular entre vecinos y trabajadores ferroviarios.Historias sobre luces.Pequeñas esferas luminosas que aparecen entre los árboles y los descampados ubicados entre las estaciones de Ranelagh y Villa España.Algunos aseguran que se trata de simples reflejos, otros hablan de fenómenos atmosféricos.Y unos pocos sostienen algo mucho más extraño que son seres vivos.",
+                latitud: -34.77848237017848,
+                longitud:  -58.18753249301026
+            },
+
+            {
+                nombre: "El taxi fantasma",
+                categoria: "Fantasmas",
+                lugar: "Cementerio de Chacarita",
+                descripcion: "A lo largo de los años han surgido innumerables historias vinculadas alrededor de Chacarita: apariciones, sombras, fantasmas, figuras que caminan entre las tumbas después del anochecer. Pero entre todas ellas existe una leyenda particularmente inquietante.La del taxi fantasma. Un automóvil antiguo que aparece en las inmediaciones del cementerio y cuyo conductor no sería otro que la propia muerte.(relato del investigador Matías Ferri)Una mañana gris de invierno me dirigí hacia una de las entradas principales del cementerio, sobre la intersección de las avenidas Corrientes y Federico Lacroze.El cielo permanecía cubierto por nubes bajas.El aire olía a flores húmedas y tierra recién regada mi objetivo era simple, encontrar a alguien que hubiera oído hablar del misterioso taxi.Y no tardé demasiado.Los primeros en hablar fueron los taxistas que trabajan habitualmente en la zona.José llevaba varios años recorriendo las calles cercanas a la necrópolis.—La historia es viejísima —me dijo—. Hay pasajeros que me la cuentan desde que empecé a trabajar.—¿Cómo describen el auto?—Casi siempre igual. Un Ford Falcon antiguo.Hizo una pausa.—Y el conductor... bueno, ahí es donde las historias se ponen raras.—¿Por qué?—Porque algunos dicen que parece un esqueleto. José sonrió.—Otros directamente dicen que es la muerte.",
+                latitud: -34.58733501273508,
+                longitud: -58.45578126249408
+            },
+
+            {
+                nombre: "El ahocardo de Chacarita",
+                categoria: "Fantasmas",
+                lugar: "Cementerio de Chacarita",
+                descripcion: "La leyenda afirma que, durante ciertas noches de luna llena, una figura humana puede verse colgando de uno de los árboles ubicados sobre la calle Jorge Newbery, cerca de las vías del ferrocarril.Los testigos describen siempre la misma imagen.Un cuerpo suspendido.Inmóvil.Balanceándose suavemente con el viento.Algunos aseguran que parece un cadáver reciente.Otros hablan de una figura semitransparente.Pero todos coinciden en algo.Cuando intentan observarlo mejor...desaparece.",
+                latitud: -34.59610873562739,
+                longitud: -58.45891739850117
+            },
+
+            {
+                nombre: "El hombre sin parpados",
+                categoria: "Fantasmas",
+                lugar: "Ferrocarril Mitre",
+                descripcion: "La historia se centra en el nombrado ferrocarril Mitre.  La historia cuenta que por los vagones de estos trenes deambula un hombre con una invalidez un tanto especial: sus ojos no tienen párpados. Así, este hombre iría de vagón en vagón, sin poder pestañear, sin poder dejar de mirar, de observarlo todo, con los ojos llenos de lágrimas, mendigando unas monedas para pagarse un carísimo trasplante que le permita recuperar su membrana protectora.los testimonios de algunos pasajeros de la línea Bartolomé Mitre:Alma T.: «No creo en el mito. Son cuentos de viejas. Oí decir por ahí que el hombre ese sube siempre en la estación de Coghlan. Mi primo vive en Coghlan y nunca lo vio». Jerónimo A.: «Hace más de veinte años que viajo en este tren. Cuando empecé a hacerlo, ya se hablaba del tipo ese. Decían que siempre andaba solo. Que siempre se bajaba o se subía en la estación… Saavedra, creo… o en Coghlan… bueno, no me acuerdo. Les soy sincero, yo no lo vi nunca. Ciegos y tuertos, miles, pero un hombre sin párpados jamás. Si hasta decían que era extraterrestre.",
+                latitud: -34.56496936664366,
+                longitud: -58.47535238915764
+            },
+
+            {
+                nombre: "La niña fantasma",
+                categoria: "Fantasmas",
+                lugar: "El cementerio de Lanus",
+                descripcion: "A diferencia de otros cementerios de Buenos Aires, sobre este lugar no circulan demasiadas historias de fantasmas.Sin embargo, existe una leyenda que aparece una y otra vez.La de una niña.Una figura infantil que, según numerosos testimonios, suele verse después del horario de cierre caminando entre las tumbas o asomándose detrás de las rejas de entrada.Las descripciones son sorprendentemente similares.Una adolescente de entre doce y catorce años.Cabello rubio.Rostro pálido.Una remera rosada.Y un short verde.Algunos creen que se trata del espíritu de una joven enterrada en el lugar.Otros hablan de rituales realizados dentro del cementerio.",
+                latitud: -34.73351959437203,
+                longitud: -58.37858486502895
+            },
+
+            {
+                nombre: "El billar fantasma",
+                categoria: "Lugar embrujado",
+                lugar: "Bar billares",
+                descripcion: "Lo abrieron por los años '50. Era bar, café y salón de billar al mismo tiempo, uno de esos lugares donde se cruzaban generaciones enteras de vecinos a tomar algo y jugar una partida. Funcionó así por mucho tiempo, hasta que cerró sus puertas. Las persianas quedaron bajas, la pintura se fue cayendo de a poco, y el local entró en ese estado de abandono silencioso que tienen los sitios que alguna vez estuvieron llenos de gente.Según cuentan generaciones de vecinos, mucho después de que el bar cerrara, algunos empezaron a escuchar cosas raras al pasar de noche por esa esquina. No un ruido cualquiera: copas chocando, cubiertos, voces mezcladas en charlas animadas y, sobre todo, el golpe característico de las bolas de billar. Como si dentro, detrás de las persianas oxidadas, todavía hubiera una partida en curso. La explicación que circuló —y que se sigue repitiendo hoy— es que se trataba de los antiguos parroquianos del bar, muchos de ellos ya fallecidos, que seguían reuniéndose ahí después de la muerte para tomar su copa y jugar su partida de siempre. El «billar fantasma», le empezaron a decir.",
+                latitud: -34.76047217229301,
+                longitud: -58.393255507627394
+
+            },
+
+            {
+                nombre: "El palacio Barolo ",
+                categoria: "Lugar embrujado",
+                lugar: "Monserrat",
+                descripcion: "En plena Avenida de Mayo, entre estudios de abogados y oficinas de contadores, hay un edificio que no debería estar ahí. No por su altura ni por su estilo, imposible de clasificar. Sino porque el Palacio Barolo no es un edificio. Es un poema de cien metros de alto, escrito en hormigón, cemento y bronce. Y el poema que cuenta es la Divina Comedia.Quien lo levantó tenía un plan tan ambicioso que roza la locura: traer las cenizas de Dante Alighieri a Buenos Aires y guardarlas acá, en el corazón de un edificio pensado como su mausoleo.Acá está lo fascinante, y lo que hace del Barolo algo único en el planeta. Todo el edificio es una traducción arquitectónica de la Divina Comedia. Nada es decorativo. Todo significa algo.Como el poema de Dante, el edificio se divide en tres partes: Infierno, Purgatorio y Paraíso.La planta baja y los subsuelos son el Infierno. En el foyer, nueve bóvedas representan las nueve jerarquías infernales —y también los nueve pasos de iniciación de la logia masónica Fede Santa, a la que se dice que pertenecían tanto Dante como Palanti—. En la base hay figuras de bronce, dragones y serpientes, que con la iluminación de los subsuelos proyectan una imagen de llamas rojizas. El fuego del averno, en el centro de Buenos Aires.Los pisos intermedios son el Purgatorio, con su decoración ligada a los siete pecados capitales. Y arriba de todo, la cúpula, es el Paraíso: coronada por un faro que arroja su luz sobre la ciudad, inspirada en un templo hindú, para representar el amor tántrico y espiritual entre Dante y Beatriz",
+                latitud: -34.60873539662905,
+                longitud: -58.386082806683625
+            },
+
+            {
+                nombre: "La puerta 12",
+                categoria: "Fantasmas",
+                lugar: "Estadio Monumental",
+                descripcion: "El domingo 23 de junio de 1968, en el estadio de fútbol Antonio V. Liberti, más conocido como El Monumental del Club Atlético River Plate, ocurrió un hecho tan trágico como inexplicable. Se jugaba el superclásico del fútbol argentino, es decir, un River-Boca. El partido en sí se había desarrollado sin ningún tipo de incidentes. En realidad, era un super clásico atípico. Las emociones no llegaban y los 90.000 espectadores (eran otros tiempos) estaban por irse desilusionados por aquel triste empate. Varios espectadores comenzaron a retirarse unos minutos antes de finalizar el encuentro por el sector de populares, más precisamente por la Puerta 12. Pero, en un hecho que muchos tildaron de insólito, la gente se vio impedida de salir. Al terminar el partido, los que ya estaban en la puerta fueron alcanzados por los que recién bajaban. Así, se produjo una avalancha mortal que terminó aplastando entre 60 y 70 hinchas. Los testimonios de la época son contradictorios. Algunos testigos sostenían que «las puertas no se abrieron»; otros, que los molinetes de la entrada «trabaron la salida de la gente», y unos cuantos más, que directamente no había ningún tipo de obstáculo.Se dice que todos o casi todos los años suceden cosas extrañas en la cancha de River y sus adyacencias, sobre todo, en cada aniversario de la tragedia. Tanto que (aunque ninguna de las autoridades del club lo confirmó) en varias ocasiones se trajeron sacerdotes para que estas «manifestaciones» terminaran.Esta versión fue confirmada por un barrabrava de River, Miguel G., más conocido como «El Pochi»:—Sí, trajimos un curita, el padre Federico, un muchacho muy joven, porque los curas viejos no te dan bola. Bendijo hasta los vestuarios, mirá. Y bueno, un poco aflojó el asunto. Eso sí, te quiero aclarar una cosa: no importa si los muertos eran bosteros o no. Con los difuntos no se jode.Más pistas: se comenta que hace algunos años, cierta persona «habitué» del club encontró un gorrito embarrado que lucía la inscripción de un nombre: Benedictino. Después de lavarlo, notó que el diseño era bastante antiguo. Las letras del nombre parecían como bordadas. Pero no. Estaban escritas con un líquido muy penetrante (¿sangre tal vez?). Esta persona lo guardó en unos de los armarios reservados para empleados, pero al cabo de un tiempo el gorrito desapareció.",
+                latitud: -34.545406453716105,
+                longitud: -58.44967320450563
+            },
+
+            {
+                nombre: "Los fantasmas del subte",
+                categoria: "Fantasmas",
+                lugar: "Linea A del Subte",
+                descripcion: "Cuenta el mito que, durante la construcción de la estación Alberti, se derrumbó una viga y murieron dos obreros italianos: Leonardo y Giuseppe. Desde entonces, dicen los propios empleados del subte, sus almas quedaron atrapadas en el andén clausurado. Y hay una forma específica de verlos: hay que tomar el último servicio de la noche. Al pasar entre Pasco y Alberti, la luz del vagón baja un instante. Y en esa penumbra, si uno mira hacia la estación fantasma, puede ver a los dos obreros sentados en el andén, con sus picos y sus palas en las manos, esperando que alguien los venga a buscar. Esperando, quizás, un relevo que nunca llegó. Hay quienes aseguran haberlos visto no solo desde la ventanilla, sino mucho más cerca: de pie junto a las vías, durante un apagón..",
+                latitud: -34.60960804064598,
+                longitud: -58.40806304843138
+            },
+
+            {
+                nombre: "El espiritu de la plaza Miserere",
+                categoria: "Fantasmas",
+                lugar: "Plaza Miserere",
+                descripcion: "Por un cambio de planes de último momento, Andrea tuvo que quedarse hasta tarde en la oficina terminando unos planos que debían presentarse al día siguiente. Cerca de las diez de la noche apagó la computadora y se incorporó con pesadez. Estaba agotada, pero la idea de llegar a casa, encender el aire acondicionado y dormir tapada hasta el cuello le dio el impulso necesario para cerrar la oficina con la llave que su jefe le había dejado y dirigirse al ascensor.Al salir a la calle, emprendió el camino hacia la parada terminal del colectivo 98, el mismo que tomaba todos los días para regresar a su casa en Berazategui. Aunque solo debía recorrer dos cuadras, el trayecto siempre se le hacía eterno. Caminar sola de noche por esa zona le resultaba aterrador, especialmente en las inmediaciones de Plaza Miserere, un lugar con fama de inseguro. Durante el día, miles de personas transitaban por allí; de noche, en cambio, la sensación de abandono era inquietante. —Crucé Pueyrredón con paso firme. Entonces noté algo raro. No fue el tránsito ni la gente lo que llamó mi atención, sino justamente la ausencia de ambos. La plaza estaba completamente vacía. Muerta. Era la única persona allí y eso me revolvió el estómago.—No sé por qué, pero algo en el monumento de Rivadavia parecía llamarme. Me acerqué al mausoleo casi sin pensarlo. Y ahí pasó algo extraño: perdí completamente la noción del tiempo. No sé si estuve parada unos segundos o varios minutos. Lo único que sé es que algo me retenía allí. Entonces vi algo moverse. Todavía no sé si fue mi imaginación, pero juraría que la estatua se inclinó apenas, como si hiciera un gesto. Fue suficiente para sacarme de ese estado. Salí corriendo hasta la parada del colectivo. Cuando llegué, había gente por todos lados. Como si hubieran aparecido de la nada. O peor... como si hubieran estado allí todo el tiempo y yo no hubiera podido verlos.",
+                latitud: -34.609673826429656,
+                longitud: -58.40635913238074
+            },
+
+            {
+                nombre: "Fantasmas en el Jardin Botanico",
+                categoria: "Fantasmas",
+                lugar: "Jardin Botanico",
+                descripcion: "El Jardín Botánico Carlos Thays es uno de los espacios verdes más emblemáticos de Buenos Aires.Ubicado en pleno corazón de Palermo, sus senderos serpentean entre árboles centenarios, esculturas, fuentes e invernaderos históricos. Diseñado por el paisajista francés Carlos Thays e inaugurado a fines del siglo XIX, el predio ocupa casi ocho hectáreas y alberga miles de especies vegetales provenientes de distintas partes del mundo.Para la mayoría de los porteños, el Botánico es un refugio de tranquilidad.Un oasis verde en medio del ruido de la ciudad. testigo 1: Según ella, durante la noche se producían fenómenos extraños en el interior del jardín.Sombras, apariciones, puertas que se abrían solas y figuras blancas captadas por las cámaras de seguridad.testigo 2 El hombre pidió expresamente que no revelara su identidad.Trabajaba en el Jardín Botánico desde hacía años y conocía cada sendero, cada edificio y cada rincón oculto del predio.Nos sentamos cerca de uno de los invernaderos mientras caía la tarde.—Las cosas raras pasan de noche —me dijo sin rodeos.Le pregunté a qué se refería.Miró alrededor antes de responder.—A veces las cámaras registran manchas blancas moviéndose entre los árboles.—¿Personas?Negó con la cabeza.—No parecen personas.Me explicó que en más de una ocasión las puertas de algunos sectores aparecieron abiertas por la mañana.No había señales de robo.No faltaba nada.Simplemente estaban abiertas.—Y lo más raro es que suele pasar cerca de los invernaderos.Su tono era completamente serio.No parecía alguien que intentará impresionar a un periodista. Le pregunté si tenía alguna explicación.Guardó silencio unos segundos.—Hay gente que pide que sus cenizas sean esparcidas acá.Miró hacia los árboles.—Quizás algunos nunca se fueron",
+                latitud: -34.582622712222005,
+                longitud: -58.41897677562461
+            },
+
+            {
+                nombre: "El tatuaje maldito",
+                categoria: "Mito",
+                lugar: "Bond street",
+                descripcion: "La práctica del tatuaje siempre estuvo relacionada con los ritos paganos, de allí que no esté permitida en la religión cristiana. ¿Pero es ésta la única razón de palabras bíblicas tan categóricas? Existe un mito urbano que dice que no, que hay algo más detrás de la prohibición del Levítico.un hombre que dedicó muchos años de su vida a perforar y entintar pellejos humanos. Dijo llamarse RUBÉN C.:—Yo tatué mucho tiempo en la galería Bond Street. Muy pocos saben por qué dejé de tatuar. Fue por esa figura de mierda.  (—¿Conocías la historia del tatuaje maldito? —preguntamos.—) Había muchos cuentos con respecto a las agujas que se usan y a las tintas, pero eran todas macanas; y siempre pensé que la historia era una pavada más, nunca le di importancia.(—¿En qué consiste el tatuaje del mito? —) — Algunos dicen que es una calavera que en su parte trasera tiene la forma de un ratón. Pero con ese tatuaje nunca tuve dramas.En el dibujo, la división media del cráneo se convierte en una pequeña columna vertebral rematada por patas y rabo de ratón. Pero les repito, yo no tuve problemas con esa figura. El quilombo fue con la otra. La llaman «El rostro de tribal». Hoy en día casi no se ve en ningún lado, es muy antigua. No me pidan que se las dibuje. Imagínense una cara media humanoide formada por tribales que repiten un mismo motivo en toda la figura: dos serpientes formando un ocho, una mordiéndole la cola a la otra y viceversa. Algunos dicen que es ésta y no la calavera la figura prohibida. Un día un tipo entró en el local con el dibujo en un papel. «Quiero que me tatúes esto», me dijo. Tenía un acento medio raro. Le pregunté si conocía la figura. Me dijo que le importaba un pito, que se la tatúe y listo. Le dije que no, pero no por la figura, sino por la actitud de mierda que tenía. A mí, en mi local, no me iba a mandar nadie. Pero entonces puso mucha guita arriba de la mesita ratona donde apoyaba las revistas de tatuajes. Mucha guita. Sentate, le dije; y se la tatué. Y se fue. A la semana me llegó una citación de la policía. El tipo se había suicidado. Los canas sabían que había estado en mi local. «Se sacó un ojo con un cuchillo de cocina», me dijeron. Había muerto desangrado. Encontraron una carta del tipo. Estaba escrita en árabe o hebreo. Decía que se arrancaría los ojos si no dejaba de ver al Diablo.",
+                latitud: -34.595960363837385,
+                longitud: -58.39102087501035
+            },
+
+            {
+                nombre: "El ombnibus a Berenice",
+                categoria: "Mito",
+                lugar: "Lavalle",
+                descripcion: "Se trataba de un cortometraje llamado El ómnibus a Berenice, que se había exhibido en varias salas de Buenos Aires. —Me acuerdo de que ese día era miércoles, por lo tanto las entradas estaban a mitad de precio. Por eso llegué con buen tiempo, por si había cola. Apenas abrí la puerta, sentí que algo diferente pasaba. Le compré la entrada a José, el de la boletería, que siempre era atento pero que ese día ni siquiera me saludó. Pensé que una mala tarde la tenía cualquiera. A los dos minutos se abrieron las puertas de la sala y la gente salió con una expresión de bronca poco común. Yo siempre me fijo en esos detalles para adivinar lo que me puede esperar. En este caso, estaba desorientado.—(¿Qué estaban proyectando?) —Hitcher, el viajero (The Hitcher, 1986), una con Rutger Hauer, el memorable Nexus 6 de Blade Runner. La historia era de un tipo que hacía dedo en la carretera y el que tenía la desgracia de levantarlo lo pasaba mal. Como decía, salió la gente y muchos pero muchos se iban al baño. Lo vi salir a Rolando con un trapo en la mano y tan pálido que estuve a punto de preguntarle si se sentía bien. «Brava la peli, ¿no?», me animé a preguntarle. «Sí, sí», me contestó, «pero lo de antes viene más jodido».Entonces, dónde estamos parados, me cortaron la entrada y me dieron el programa. Marcia, otra de las acomodadoras, tampoco me saludó, se la veía tensa. Entré. Hacía calor. La sala estaba bastante sucia, los programas no solamente tirados, sino también había pedacitos por todos lados. Como era uno de los primeros en la cola me senté bien al medio, pero igual estaba incómodo. Había algo que molestaba. Un olor…un olor a ¡vómito! ¡Eso era! Cuando me acostumbré, empezaron a pasar propagandas. Después de eso vino el corto. Me acuerdo muy bien porque la cámara mostraba una ruta y pensé que ya se trataba de la película. La historia en sí me pareció una boludez —a mí me aburren en general los cortos— y me entretuve comiendo un maní con chocolate que había comprado antes de entrar. —Se trataba de un pibe y una mina que se conocían en un viaje. Había mucha onda entre los dos pero el flaco no se animaba a avanzar. Entonces, en una estación, se despidieron y tomaron caminos opuestos, pero él se arrepentía y agarraba un ómnibus para ir a buscarla al aeropuerto. Al bondi le pasaba de todo. Se le pinchaba una goma, casi chocaba, se quedaba sin nafta. Lo que estaba bueno era que cuando llegaba, no la encontraba. Es que ella decidía volver a buscarlo a la estación. El corto terminaba con el enamorado mirando cómo despegaba un avión.  —En el corto propiamente dicho, no. Recuerdo que me rompía un poco las tomas al pedo de señales de la carretera, patentes de los autos, esas cosas. Típico de estos pendejos que recién empiezan y se creen que son Fellini o Coppola (Francis Ford). Ahora, en la sala, sí. Yo tuve un par de ataques de estornudo, no podía parar de estornudar pero más que eso, no. Debo de estar inmunizado. Pero me acuerdo de que tenía un hombre sentado a dos o tres butacas y estaba muy nervioso, tenía las uñas clavadas en los apoyabrazos, hasta en varios momentos me pareció ver que le salía espuma por la boca. Además, otros espectadores se comportaban en forma extraña. Dos chabones casi se agarran a las piñas, una chica iba de un lado al otro de la sala. Cuando empezó la peli, la cosa se calmó un poco. Lo más grave fue uno que se subió al pequeño escenario que separaba las butacas de la pantalla y ¡empezó a gritarle a la proyección! Entre Rolando y Marcia se lo llevaron.Otro testigo: ( Le preguntamos si sabía el argumento del cortometraje y nos contó una variante, diferente) —Creo que se llamaba En camino a Beatriz o algo por el estilo. Se trataba de un muchacho que tenía problemas psicológicos y quería matar a su novia. Se tomaba un ómnibus. Mientras viajaba, no paraba de imaginar las cosas que haría cuando la alcanzara, pero en el camino, el ómnibus tenía problemas de todo tipo. La novia debía tomarse un avión y como él no llegaba a tiempo, ella se salvaba. Se conoce que las cosas que se imaginaba el novio eran muy fuertes, demasiado reales. Me hablaron de que metieron escenas de películas snuff, ésas en la que filman torturas y hasta asesinatos. De todas maneras, lo peor pasó cuando salió la gente del cine. Un grupo de jóvenes, que ya estaba haciendo bastante lío en la sala, se fue a una casa de jueguitos electrónicos de la otra cuadra y rompió varias máquinas. Una pareja se peleó en la puerta del cine y el novio la mandó al hospital. Según cuentan, en todas las salas que se emitió el corto, durante y después, hubo problemas, hasta un asesinato.",
+                latitud: -34.60302027578358,
+                longitud: -58.39538193335969
+            },
+
+            {
+                nombre: "El reservito, el monstruo de la reserva",
+                categoria: "Fantasmas",
+                lugar: "Reserva Ecologica",
+                descripcion: "Cuentan que entre los pastizales hay algo. Una criatura del tamaño de un perro, con cara de rata, que sigue a los que caminan solos cuando el sol empieza a caer. Que se mueve rápido y sin ruido. Que en las versiones más pesadas de la historia tiene apetito por la carne humana. Dicen que sus ojos devuelven la luz de la luna y que su hocico siempre está húmedo, esperando. La mayoría de los que hablan de él nunca lo vieron. Pero todos conocen a alguien que sí.La historia arranca en 1986, apenas se inauguró la Reserva. El lugar era nuevo, un ecosistema que se había armado casi por su cuenta sobre tierras ganadas al río, y todavía nadie terminaba de saber qué vivía ahí adentro. En ese territorio a medio conocer empezaron a aparecer los testimonios: gente que aseguraba haberse cruzado con un animal que no sabía nombrar. Algo mediano. Algo entre el perro y la rata. Algo que no estaba en ningún cartel de la entrada.Hay un detalle que le da al Reservito un peso más oscuro que el de una simple rareza zoológica. Se dice que cruzarlo es una promesa de desgracia. La leyenda cuenta que la primera persona que afirmó haberlo visto murió en un accidente de auto pocas semanas después. Del resto de los que dijeron encontrarlo, quedaron pocos rastros. Y ese silencio, como siempre en estas historias, se llenó sólo de sospechas.",
+                latitud: -34.60681311750479,
+                longitud: -58.35207870098369
+            },
+
+            {
+                nombre: "El celador de los muertos",
+                categoria: "Fantasmas",
+                lugar: "Cementerio de Recoleta",
+                descripcion: "Cinthia sostuvo la taza de café entre las manos antes de comenzar su relato. Durante unos segundos observó la espuma como si buscara allí las palabras adecuadas.—Volvía de la facultad. Esa noche habíamos salido más tarde de lo habitual de una clase de Derecho. Estaba agotada y solo quería llegar a casa. Mis compañeras siempre se quedaban hablando después de cursar, pero yo ya no tenía energía para eso. Así que decidí volver sola.Todo ocurrió una noche de otoño, mientras caminaba por la calle Junín en dirección a la avenida Las Heras para tomar el colectivo 37.Al llegar a la altura de la Basílica Nuestra Señora del Pilar comenzó a bordear el muro perimetral del Cementerio de la Recoleta.—Al principio pensé que era cansancio. Pero empecé a sentirme rara.El aire parecía inmóvil. Como si el tiempo hubiera disminuido su marcha.Sentía el cuerpo pesado. Y una sensación muy extraña... como si alguien me estuviera observando.Cuando llegué frente a la entrada principal del cementerio, algo me obligó a detenerse.Todavía hoy no sé explicar por qué.Simplemente ocurrió.Gire la cabeza y mire hacia el interior.Las antiguas rejas de hierro permitían observar buena parte del acceso principal. Bajo la luz tenue de los faroles nocturnos, el cementerio parecía una pequeña ciudad abandonada.Las calles de baldosas se extendían entre mausoleos y criptas de mármol alineadas como diminutas viviendas silenciosas.A lo lejos, las estatuas permanecían inmóviles bajo la oscuridad.Era un paisaje tranquilo.Pero profundamente inquietante. -- No sé cuánto tiempo me quedé mirando. Tal vez unos segundos. Tal vez varios minutos.Lo único que recordaba con claridad era el cambio repentino de temperatura de golpe hizo frío, mucho frío.Y tuve la certeza de que no estaba sola. A pocos metros de la entrada, inclinado sobre el suelo, un hombre trabajaba en silencio.Vestía una camisa clara de corte antiguo y un pantalón oscuro que parecía pertenecer a otra época.Llevaba un sombrero gastado.Las manos sostenían un cepillo de cerdas gruesas con el que fregaba lentamente el piso de piedra.—Escuchaba el ruido del cepillo contra el suelo. Era el único sonido que había.La escena parecía extraña.Pero no imposible.Quizás algún empleado.Quizás un cuidador.Quizás alguien encargado del mantenimiento.Movida por la curiosidad, Cinthia se acercó unos pasos.—Le pregunté si necesitaba ayuda.El hombre no respondió.Ni siquiera levantó la cabeza.Pensé que no me había escuchado.El hombre continuó fregando el suelo con movimientos lentos y repetitivos.Como si ella no existiera.Como si estuviera sola.Y entonces algo dentro de ella comprendió que aquello no era normal.—Sentí un escalofrío recorrerme la espalda.Decidió alejarse pero antes de marcharse giró la cabeza una última vez.Y se quedó paralizada.El hombre había dejado de limpiar.Ahora permanecía completamente inmóvil.Observándola.—Fue ahí cuando vi sus ojos. Eran completamente blancos.Sin pupilas.Sin expresión.Sin vida.",
+                latitud: -34.587203173954585,
+                longitud: -58.39190437930457
+            },
+
+            {
+                nombre: "La dama de blanco de la Recoleta",
+                categoria: "Fantasmas",
+                lugar: "Cementerio de Recoleta",
+                descripcion: "Todo comenzó en 1910.Ese año nació Luz María García Velloso, hija del reconocido dramaturgo Enrique García Velloso.Quienes la conocieron la describen como una joven amable, elegante y extraordinariamente bella.La vida parecía extenderse luminosa frente a ella.Pero el destino tenía otros planes.Durante su adolescencia le diagnosticaron leucemia.En aquella época la enfermedad era prácticamente una sentencia de muerte.Luz María falleció siendo apenas una joven.Su muerte devastó a toda la familia.Especialmente a su madre.Consumida por el dolor, decidió construir una tumba única para su hija.Una obra de arte funeraria que todavía hoy puede visitarse en el Cementerio de la Recoleta.La versión más conocida de la historia transcurre durante una noche de verano.Un joven llamado Marcos compartía una salida con amigos en uno de los bares cercanos al cementerio.La noche avanzaba entre conversaciones, música y copas.Fue entonces cuando ella apareció.Vestía un largo vestido blanco.Su presencia parecía iluminar el lugar.Marcos quedó cautivado de inmediato.Era imposible no observarla.La joven poseía una belleza serena y elegante, alejada de cualquier artificio.Cuando sus miradas se cruzaron, ella sonrió.Y aquella sonrisa bastó para que el resto del mundo desapareciera.Durante horas conversaron..La madrugada avanzó sin que ninguno de los dos pareciera notarlo.Finalmente, cuando las primeras luces del amanecer comenzaron a teñir el cielo, la joven anunció que debía marcharse.Marcos insistió en acompañarla.Ella aceptó.Caminaron juntos por las silenciosas calles de la Recoleta.El aire fresco anunciaba el final de la noche.Y todo parecía perfecto.Hasta que llegaron frente al cementerio.Allí ocurrió algo extraño.La joven se detuvo.Miró hacia las rejas.Y sonrió por última vez.Luego comenzó a correr.Marcos intentó seguirla.Pero fue inútil.La vio subir las escalinatas de la entrada principal y desaparecer detrás de las rejas.Cuando llegó al lugar, el portón permanecía cerrado.No había nadie.Solo silencio.Y la ciudad de los muertos extendiéndose detrás de los muros.Incapaz de comprender lo sucedido, regresó al día siguiente.Esperó la apertura del cementerio y relató la historia al cuidador.Después de escuchar atentamente la descripción de la joven, el hombre permaneció en silencio.Finalmente le pidió que lo siguiera.Caminaron entre las calles de mármol.Doblaron varias veces.Hasta detenerse frente a una tumba.—¿Es ella? —preguntó el cuidador.Marcos sintió que el mundo desaparecía bajo sus pies.La escultura representaba exactamente a la mujer que había conocido la noche anterior.El mismo rostro.La misma expresión.La misma mirada.Era Luz María García Velloso.Muerta hacía años.La sorpresa se transformó en horror cuando observó algo más.Sobre el mármol, cuidadosamente doblada, descansaba la chaqueta que le había prestado durante la madrugada para protegerla del frío",
+                latitud: -34.587143056699595,
+                longitud:  -58.39293404683158
+            },
+
+            {
+                nombre: "El rock del averno",
+                categoria: "Mito",
+                lugar: "Villa Soldati",
+                descripcion: "Dale, Inés, Otro Soy Necesito Otra Voz Inés, Volvé, Eterna Sos Amo Tanto Amarte Necesito Aquel Sudor El Sueño Distinto, Imposible Otro Soy, Así dice el estribillo de Inés, canción perteneciente al desaparecido grupo Karras, integrado por jóvenes de Villa Soldati.¿Qué tiene de especial todo esto? Volvamos al estribillo y destaquemos las iniciales de cada palabra:Dios no vive. Satanás es Dios.¿Casualidad? ¿Coincidencia? No es justamente lo que piensan los habitantes de Villa Soldati: CECILIA B. (ama de casa): «Mi hijo era amigo de uno de los que formaban el grupo. Creo que del baterista. Ese chico se fue transformando, se fue destruyendo. Venía a casa cada vez más pálido. Hasta que un día no vino más. Mi hijo decía siempre que era por la música que tocaba». CARLOS P. (quiosco de diarios y revistas): «Yo llegué a ir a un recital de ellos, fue en un pub, antes que desaparecieran. Me acuerdo que arrancaron con la tercera canción, creo que era la de Inés, y me desmayé, o al menos eso me dijeron mis amigos, que me llevaron a casa. Me desperté recién al otro día. Mi vieja me dijo que me pasé toda la noche murmurando cosas. Siempre se comentó que había mensajes satánicos en las canciones de Karras, pero yo nunca le di bola; hasta que me pasó eso».",
+                latitud: -34.667036598,
+                longitud: -58.44686155456615
+            }
+
+        ];
+
+
+        // CREAR LOS MARCADORES AUTOMÁTICAMENTE
+        leyendas.forEach(function(leyenda) {
+
+            let icono;
+
+            if (leyenda.categoria === "Fantasmas") {
+                icono = iconoFantasma;
+
+            } else if (leyenda.categoria === "Lugar embrujado") {
+                icono = iconoCasa;
+
+            } else if (leyenda.categoria === "Mito") {
+                icono = iconoCalabaza;
+            }
+
+
+            L.marker(
+                [leyenda.latitud, leyenda.longitud],
+                { icon: icono }
+            )
+            .addTo(map)
+            .bindPopup(`
+                <b>${leyenda.nombre}</b><br><br>
+                <b>Categoría:</b> ${leyenda.categoria}<br>
+                <b>Lugar:</b> ${leyenda.lugar}<br><br>
+                ${leyenda.descripcion}
+            `);
+
+        });
+
+    </script>
+
+</body>
+</html>
